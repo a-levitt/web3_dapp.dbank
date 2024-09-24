@@ -1,5 +1,6 @@
 import Debug "mo:base/Debug";
 import Nat "mo:base/Nat";
+import Int "mo:base/Int";
 
 actor DBank {
   var currentValue = 300;
@@ -14,8 +15,14 @@ actor DBank {
   };
 
     public func decrease(amount: Nat) {
-    currentValue -= amount;
-    Debug.print(debug_show(currentValue));
+      let tempValue: Int = currentValue - amount;
+      if (tempValue >= 0) {
+          currentValue -= amount;
+          Debug.print(debug_show(currentValue));
+      } else {
+        Debug.print("Error. Value is negative.");
+      }
+
   };
 
   //topUp();
